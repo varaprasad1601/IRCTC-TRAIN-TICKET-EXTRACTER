@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+<html>
+<head>
+{% block content %}
+<style>
+    .btn_ext:hover{
+            background-color: #b680d5 !important;
+    }
+    @media screen and (max-width:800px){
+        .main_div{
+            padding: 50px 0px !important;
+            margin-bottom: 100px !important;
+        }
+        .inner_div{
+            width: 340px !important;
+        }
+        .padding{
+            padding: 15px 15px 30px 15px !important;
+        }
+    }
+</style>
+</head>
+<body style = "background:radial-gradient(#fff,#c292de)"></body>
+<div class="container-fluid py-5 mt-3 bg main_div">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center align-items-center bg">
+            <div class="col-md-5 p-3 mb-5 shadow inner_div" style="height: max-content; border-radius: 25px; background:#fff">
+                <div class="row d-flex" id="col">
+                    <div class="col-md-12 px-5 py-4 padding">
+                        <form action="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+                            <center><h4 style="font-weight:700">Contact Us</h4></center>
+                            <div class="col-md-12 mt-3">
+                                <label>Subject</label>
+                                <input type="text" class="form-control mb-3 bg-light" autocomplete="off" placeholder="Subject" required name="subject" id="subject">
+                                <label>Message</label>
+                                <textarea class="form-control mb-3 bg-light" name="message" id="message" rows="5" required placeholder="Message"></textarea>
+                                <input type="submit" class="btn mt-3 btn_ext" style="width: 100%; color: #fff; background-color: #c292de;" value="Submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if message %}
+<script>
+    alert("Submitted Successfully");
+    window.location = "/contact"
+</script>
+{% endif %}
+</body>
+{% endblock %}
+</html>
